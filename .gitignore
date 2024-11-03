@@ -63,3 +63,9 @@ _ReSharper*/
 
 # Ignore Rider files
 .idea/
+
+# Ignore test file
+TestValues.cs
+
+userconfig.json
+

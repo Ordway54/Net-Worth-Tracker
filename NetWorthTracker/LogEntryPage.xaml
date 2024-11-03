@@ -8,10 +8,33 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LogEntryPage">
 
-    <Grid Background="LightGreen">
-        <StackPanel>
-        <Label Content="Log Entry Page"></Label>
-            <Button Content="Go Back" Click="GoBack_Click"></Button>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="75*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="New Log Entry" Grid.ColumnSpan="2" FontSize="24" HorizontalContentAlignment="Center"
+               HorizontalAlignment="Center"></Label>
+
+        <StackPanel Name="AccountNamesStackPanel" Grid.Row="1">
+
         </StackPanel>
+
+        <StackPanel Name="AccountValuesStackPanel" Grid.Row="1" Grid.Column="1">
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button Style="{StaticResource MenuButton}" Content="Go Back" Click="GoBack_Click"></Button>
+            <Rectangle Width="100"></Rectangle>
+            <Button Style="{StaticResource MenuButton}" Content="Save Log Entry"></Button>
+            
+        </StackPanel>
+        
     </Grid>
 </Page>
