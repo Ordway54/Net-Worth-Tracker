@@ -6,37 +6,7 @@
         xmlns:local="clr-namespace:NetWorthTracker"
         mc:Ignorable="d"
         Title="Net Worth Tracker v1.0" Height="450" Width="800">
-    <Grid Background="#AAC3DA">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60*"/>
-            <ColumnDefinition Width="40*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <Border Style="{StaticResource MenuBorder}" Width="200">
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Net Worth Tracker" FontSize="48" 
-                       FontFamily="Georgia" Width="Auto" Height="Auto" TextWrapping="WrapWithOverflow"
-                       VerticalAlignment="Center">
-            </TextBlock>
-        </Border>
-
-        <Border Style="{StaticResource MenuBorder}" Grid.Row="1" Width="400" Height="100">
-        <TextBlock Name="DateField" Text="Wednesday, November 6, 2024" FontFamily="Georgia"
-                   FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow">
-            
-        </TextBlock>
-        </Border>
-        
-        <Border Style="{StaticResource MenuBorder}" Grid.Column="1" Grid.RowSpan="2" Width="250" HorizontalAlignment="Center">
-            <StackPanel>
-                <Button Style="{StaticResource MenuButton}" Content="Add Log Entry" Click="AddLogEntry_Click"></Button>
-                <Button Style="{StaticResource MenuButton}" Content="View Dashboard"></Button>
-                <Button Style="{StaticResource MenuButton}" Content="Manage Accounts"></Button>
-            
-            </StackPanel>
-        </Border>
+    <Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

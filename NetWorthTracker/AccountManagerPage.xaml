@@ -20,6 +20,7 @@
             <Label Content="Account 3"></Label>
             <Label Content="Account 4"></Label>
             <Label Content="Account 5"></Label>
+            <Button Content="Go Back" Click="GoBack_Click"></Button>
         </StackPanel>
         
     </Grid>

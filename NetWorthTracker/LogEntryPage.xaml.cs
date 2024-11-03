@@ -10,18 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace NetWorthTracker
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for LogEntryPage.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class LogEntryPage : Page
     {
-        public Window1()
+        public LogEntryPage()
         {
             InitializeComponent();
+        }
+
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }
