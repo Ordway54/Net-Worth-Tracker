@@ -8,31 +8,53 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LogEntryPage">
 
-    <Grid>
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="75*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="75*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
         <Label Content="New Log Entry" Grid.ColumnSpan="2" FontSize="24" HorizontalContentAlignment="Center"
-               HorizontalAlignment="Center"></Label>
+               HorizontalAlignment="Center" />
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label Content="Date:"/>
+            <DatePicker MinWidth="100">
+                <DatePicker.Resources>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DatePickerTextBox">
+                                    <TextBox x:Name="PART_TextBox"
+                                 Text="{Binding Path=SelectedDate, StringFormat='yyyy-MM-dd', RelativeSource={RelativeSource AncestorType=DatePicker}}"
+                                 Background="White"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+        </StackPanel>
 
-        <StackPanel Name="AccountNamesStackPanel" Grid.Row="1">
+
+
+        <StackPanel Name="AccountNamesStackPanel" Grid.Row="2">
 
         </StackPanel>
 
-        <StackPanel Name="AccountValuesStackPanel" Grid.Row="1" Grid.Column="1">
+        <StackPanel Name="AccountValuesStackPanel" Grid.Row="2" Grid.Column="1">
 
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Button Style="{StaticResource MenuButton}" Content="Go Back" Click="GoBack_Click"></Button>
             <Rectangle Width="100"></Rectangle>
-            <Button Style="{StaticResource MenuButton}" Content="Save Log Entry"></Button>
+            <Button Style="{StaticResource MenuButton}" Content="Save Log Entry" Click="SaveLogEntry_Click"></Button>
             
         </StackPanel>
         
