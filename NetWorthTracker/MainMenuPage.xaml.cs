@@ -13,7 +13,19 @@ namespace NetWorthTracker
         {
             InitializeComponent();
             DateField.Text = TodayDate.ToString(DateFormatString);
+            SetQuote();
             
+        }
+
+        private void SetQuote()
+        {
+            Quote? quote = Quote.GetRandomQuote();
+
+            if (quote != null)
+            {
+                string quoteStr = quote.Text + "\n\n" + $"- {quote.Author}";
+                QuoteTextBlock.Text = quoteStr;
+            }
         }
 
         private void AddLogEntry_Click(object sender, RoutedEventArgs e)

@@ -4,11 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NetWorthTracker"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      mc:Ignorable="d"
       Title="MainMenuPage">
 
-    <Grid Background="#AAC3DA">
+    <Grid Background="#AAC3DA" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60*"/>
             <ColumnDefinition Width="40*"/>
@@ -24,13 +23,22 @@
                    VerticalAlignment="Center">
             </TextBlock>
         </Border>
-
-        <Border Style="{StaticResource MenuBorder}" Grid.Row="1" Width="400" Height="100">
-            <TextBlock Name="DateField" Text="Wednesday, November 6, 2024" FontFamily="Georgia"
-               FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow">
-
-            </TextBlock>
-        </Border>
+        <StackPanel Grid.Row="1">
+            <Border Style="{StaticResource MenuBorder}" Width="400" Height="100">
+                <TextBlock Name="DateField" Text="Wednesday, November 6, 2024" FontFamily="Georgia"
+                   FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow">
+                </TextBlock>
+            </Border>
+            
+            <Border Style="{StaticResource MenuBorder}">
+                <StackPanel>
+                    <Label Content="Quote of the Day" FontFamily="Georgia" FontStyle="Italic" FontSize="18" FontWeight="Bold" />
+                    <Rectangle Fill="Black" Height="0.80" Margin="8"></Rectangle>
+                    <TextBlock Name="QuoteTextBlock" Text="Placeholder Text" FontFamily="Georgia" FontSize="18" FontStyle="Italic" TextWrapping="WrapWithOverflow" />
+                </StackPanel>
+            </Border>
+            
+        </StackPanel>
 
         <Border Style="{StaticResource MenuBorder}" Grid.Column="1" Grid.RowSpan="2" Width="250" HorizontalAlignment="Center">
             <StackPanel>

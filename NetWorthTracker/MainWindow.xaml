@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NetWorthTracker"
         mc:Ignorable="d"
-        Title="Net Worth Tracker v1.0" Height="450" Width="800">
+        Title="Net Worth Tracker v1.0" Height="Auto" Width="Auto">
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
     </Grid>
