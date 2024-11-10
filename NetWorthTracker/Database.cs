@@ -2,12 +2,12 @@
 
 namespace NetWorthTracker
 {
-    internal class Database
+    public class Database
     {
         private const string connectionString = "Data Source=nwdatabase.db";
         public const string DateFormatString = "yyyy-MM-dd";
 
-        public void InsertRecord(NetWorthLogEntry logEntry)
+        public static void InsertRecord(NetWorthLogEntry logEntry)
         {
             using (var connection = new SqliteConnection(connectionString))
             {
@@ -29,6 +29,10 @@ namespace NetWorthTracker
                         AddColumn(account.Key, "REAL");
                     }
                 }
+
+                if (!ColumnExists("NetWorth")) { AddColumn("NetWorth", "REAL"); }
+                if (!ColumnExists("Date")) { AddColumn("Date", "TEXT"); }
+
 
                 string columns = string.Join(", ", accountBalances.Keys);
                 columns = columns + ", NetWorth, Date";
@@ -56,7 +60,7 @@ namespace NetWorthTracker
 
         }
 
-        private bool ColumnExists(string columnName, string tableName = "Entries")
+        private static bool ColumnExists(string columnName, string tableName = "Entries")
         {
             using (var connection = new SqliteConnection(connectionString)) {
                 connection.Open();
@@ -82,7 +86,7 @@ namespace NetWorthTracker
             return false;
         }
 
-        private void AddColumn(string columnName, string columnType, string tableName = "Entries")
+        private static void AddColumn(string columnName, string columnType, string tableName = "Entries")
         {
             using (var connection = new SqliteConnection(connectionString))
             {

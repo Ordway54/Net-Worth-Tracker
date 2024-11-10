@@ -23,7 +23,7 @@ namespace NetWorthTracker
                 {
                     Content = accountName,
                     Height = 30,
-                    HorizontalAlignment = HorizontalAlignment.Right,
+                    HorizontalAlignment = HorizontalAlignment.Left,
                 };
 
                 // remove spaces from account name for naming TextBox control
@@ -55,6 +55,48 @@ namespace NetWorthTracker
                                                 MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes;
 
             if (userConfirmed) { NavigationService.GoBack(); }
+        }
+
+        private void SaveLogEntry_Click(object sender, RoutedEventArgs e)
+        {
+            /*NetWorthLogEntry logEntry = new NetWorthLogEntry();*/
+
+            // get contents of fields, in dict
+            // pass NWLogentry obj to Database.InsertRecord()
+
+            DateTime date = DateTime.Parse(DatePickerControl.Text);
+            NetWorthLogEntry logEntry = new NetWorthLogEntry(date);
+
+            for (int i = 0; i < AccountNamesStackPanel.Children.Count; i++)
+            {
+                var nameControl = AccountNamesStackPanel.Children[i];
+                var valueControl = AccountValuesStackPanel.Children[i];
+
+                if (nameControl is Label nameLabel && valueControl is TextBox valueTextBox)
+                {
+                    string accountName = nameLabel.Content as string ?? "";
+                    accountName = accountName.Replace(" ", "");
+
+                    if (double.TryParse(valueTextBox.Text, out double accountBalance))
+                    {
+                        logEntry.AddAccountBalance(accountName, accountBalance);
+                    }
+                }
+            }
+
+            Database.InsertRecord(logEntry);
+            ClearTextBoxes();
+        }
+
+        private void ClearTextBoxes()
+        {
+            foreach (var child in AccountValuesStackPanel.Children)
+            {
+                if (child is TextBox valueTextBox)
+                {
+                    valueTextBox.Clear();
+                }
+            }
         }
     }
 }

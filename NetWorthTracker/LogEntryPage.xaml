@@ -24,7 +24,7 @@
                HorizontalAlignment="Center" />
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Label Content="Date:"/>
-            <DatePicker MinWidth="100">
+            <DatePicker Name="DatePickerControl" MinWidth="100">
                 <DatePicker.Resources>
                     <Style TargetType="DatePickerTextBox">
                         <Setter Property="Control.Template">
