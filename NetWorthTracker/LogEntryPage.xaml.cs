@@ -11,6 +11,7 @@ namespace NetWorthTracker
         {
             InitializeComponent();
             PopulateAccountFields(UserConfigManager.GetUserAccountNames());
+            DatePickerControl.Text = DateTime.Today.ToString(Database.DateFormatString);
         }
 
         private void PopulateAccountFields(string[] accountNames)
@@ -59,11 +60,6 @@ namespace NetWorthTracker
 
         private void SaveLogEntry_Click(object sender, RoutedEventArgs e)
         {
-            /*NetWorthLogEntry logEntry = new NetWorthLogEntry();*/
-
-            // get contents of fields, in dict
-            // pass NWLogentry obj to Database.InsertRecord()
-
             DateTime date = DateTime.Parse(DatePickerControl.Text);
             NetWorthLogEntry logEntry = new NetWorthLogEntry(date);
 
