@@ -80,8 +80,19 @@ namespace NetWorthTracker
                 }
             }
 
-            Database.InsertRecord(logEntry);
-            ClearTextBoxes();
+            bool addRecordSuccessful = Database.InsertRecord(logEntry);
+            
+            if (addRecordSuccessful)
+            {
+                MessageBox.Show("The log entry was successfully added to the database.", 
+                                "Database Entry Succeeded", MessageBoxButton.OK, MessageBoxImage.Information);
+                ClearTextBoxes();
+            }
+            else
+            {
+                MessageBox.Show("Failed to write log entry to the database.",
+                                "Database Entry Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ClearTextBoxes()

@@ -7,7 +7,7 @@ namespace NetWorthTracker
         private const string connectionString = "Data Source=nwdatabase.db";
         public const string DateFormatString = "yyyy-MM-dd";
 
-        public static void InsertRecord(NetWorthLogEntry logEntry)
+        public static bool InsertRecord(NetWorthLogEntry logEntry)
         {
             using (var connection = new SqliteConnection(connectionString))
             {
@@ -53,9 +53,17 @@ namespace NetWorthTracker
                 insertCommand.Parameters.AddWithValue("@NetWorth", logEntry.NetWorth);
                 insertCommand.Parameters.AddWithValue("@Date", logEntry.FormattedDate);
 
-                insertCommand.ExecuteNonQuery();
+                try
+                {
+                    insertCommand.ExecuteNonQuery();
+                }
 
-                Console.WriteLine("Record inserted successfully.");
+                catch (SqliteException)
+                {
+                    return false;
+                }
+
+                return true;
             }
 
         }
