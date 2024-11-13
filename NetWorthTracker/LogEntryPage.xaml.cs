@@ -51,11 +51,20 @@ namespace NetWorthTracker
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            string message = "Are you sure you want to return to Main Menu? All unsaved progress will be lost.";
-            bool userConfirmed = MessageBox.Show(message, "Confirm", MessageBoxButton.YesNo, 
-                                                MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes;
-
-            if (userConfirmed) { NavigationService.GoBack(); }
+            if (!AllTextBoxesEmpty())
+            {
+                string message = "Are you sure you want to return to Main Menu? All unsaved progress will be lost.";
+                bool userConfirmed = MessageBox.Show(message, "Confirm", MessageBoxButton.YesNo,
+                                                    MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes;
+                if (userConfirmed) 
+                { 
+                    NavigationService.GoBack();
+                }
+            }
+            else 
+            { 
+                NavigationService.GoBack(); 
+            }
         }
 
         private void SaveLogEntry_Click(object sender, RoutedEventArgs e)
@@ -104,6 +113,12 @@ namespace NetWorthTracker
                     valueTextBox.Clear();
                 }
             }
+        }
+
+        private bool AllTextBoxesEmpty()
+        {
+            return AccountValuesStackPanel.Children.OfType<TextBox>()
+           .All(textBox => string.IsNullOrEmpty(textBox.Text));
         }
     }
 }
