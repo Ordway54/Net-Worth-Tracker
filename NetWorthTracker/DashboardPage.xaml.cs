@@ -9,6 +9,7 @@ namespace NetWorthTracker
         public DashboardPage()
         {
             InitializeComponent();
+            Plotting.DisplayNetWorthPlot(WpfPlot1);
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)

@@ -13,11 +13,6 @@ namespace NetWorthTracker
             string jsonContent = File.ReadAllText(jsonFilePath);
             UserConfig? userConfig = JsonSerializer.Deserialize<UserConfig>(jsonContent);
 
-            if (userConfig != null)
-            {
-                Console.WriteLine(userConfig.ToString());
-            }
-
             return userConfig.Accounts;
         }
     }

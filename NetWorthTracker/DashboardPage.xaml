@@ -7,21 +7,21 @@
       xmlns:local="clr-namespace:NetWorthTracker"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DashboardPage">
+      Title="Net Worth Dashboard">
 
     <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Dashboard Page" FontSize="24" HorizontalAlignment="Center" />
-
-        <ScottPlot:WpfPlot x:Name="WpfPlot1" Grid.Row="1"/>
-
-        <Button Style="{StaticResource MenuButton}" Content="Go Back" Click="GoBack_Click" Grid.Row="2" />
-
-
+        <Label Content="Dashboard Page" FontSize="24" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
+        <ScottPlot:WpfPlot x:Name="WpfPlot1" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button Style="{StaticResource MenuButton}" Content="Go Back" Click="GoBack_Click" Grid.Row="2" Width="150" HorizontalAlignment="Left" />
     </Grid>
 </Page>

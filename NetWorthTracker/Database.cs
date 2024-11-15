@@ -68,20 +68,37 @@ namespace NetWorthTracker
 
         }
 
-        public static Dictionary<DateTime, double> GetNetWorthValues(DateRange dateRange)
+        public static Dictionary<DateTime, double> GetNetWorthValues(DateRange? dateRange = null)
         {
-            Dictionary<DateTime, double> logEntries = new Dictionary<DateTime, double>();
+
+            string query;
+
+            if (dateRange == null)
+            {
+                query = "SELECT Date, NetWorth FROM Entries;";
+            }
+
+            else
+            {
+                query = @"SELECT Date, NetWorth FROM Entries WHERE Date BETWEEN @startDate AND @endDate;";
+            }
+
+
+            var logEntries = new Dictionary<DateTime, double>();
 
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
                 // TODO: modify database to handled duplicate days, or change return data structure
-                string query = @"SELECT Date, NetWorth FROM Entries WHERE Date BETWEEN @startDate AND @endDate;";
 
                 var command = connection.CreateCommand();
                 command.CommandText = query;
-                command.Parameters.AddWithValue("@startDate", dateRange.StartDateFormatted);
-                command.Parameters.AddWithValue("@endDate", dateRange.EndDateFormatted);
+
+                if (dateRange != null)
+                {
+                    command.Parameters.AddWithValue("@startDate", dateRange.Value.StartDateFormatted);
+                    command.Parameters.AddWithValue("@endDate", dateRange.Value.EndDateFormatted);
+                }
 
                 using (var reader = command.ExecuteReader())
                 {
