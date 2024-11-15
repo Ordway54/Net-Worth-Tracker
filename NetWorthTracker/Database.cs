@@ -75,12 +75,12 @@ namespace NetWorthTracker
 
             if (dateRange == null)
             {
-                query = "SELECT Date, NetWorth FROM Entries;";
+                query = "SELECT Date, NetWorth FROM Entries ORDER BY Date ASC;";
             }
 
             else
             {
-                query = @"SELECT Date, NetWorth FROM Entries WHERE Date BETWEEN @startDate AND @endDate;";
+                query = @"SELECT Date, NetWorth FROM Entries WHERE Date BETWEEN @startDate AND @endDate ORDER BY Date ASC;";
             }
 
 
